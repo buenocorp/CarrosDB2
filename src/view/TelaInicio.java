@@ -47,7 +47,7 @@ public class TelaInicio extends JFrame {
 		database.ConnectionFactory.init();
 		EventQueue.invokeLater(() -> {
 			try {
-				TelaInicio frame = new TelaInicio();
+				TelaHome frame = new TelaHome("Admin");
 				frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
