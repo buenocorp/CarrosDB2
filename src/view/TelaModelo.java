@@ -110,16 +110,16 @@ public class TelaModelo extends JDialog {
         Marca marcaSelecionada = (Marca) comboMarca.getSelectedItem();
 
         if (nomeModelo.isEmpty() || marcaSelecionada == null) {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Preencha todos os campos!");
             return;
         }
 
         if (idSelecionado == 0) {
             controller.salvarModelo(nomeModelo, marcaSelecionada);
-            JOptionPane.showMessageDialog(this, "Modelo salvo!");
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Modelo salvo!");
         } else {
             controller.atualizarModelo(idSelecionado, nomeModelo, marcaSelecionada);
-            JOptionPane.showMessageDialog(this, "Modelo atualizado!");
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Modelo atualizado!");
             idSelecionado = 0;
         }
 
@@ -133,7 +133,7 @@ public class TelaModelo extends JDialog {
         int linha = tabelaModelos.getSelectedRow();
 
         if (linha == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione um modelo!");
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Selecione um modelo!");
             return;
         }
 
@@ -158,7 +158,7 @@ public class TelaModelo extends JDialog {
         int linha = tabelaModelos.getSelectedRow();
 
         if (linha == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione um modelo!");
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Selecione um modelo!");
             return;
         }
 
@@ -166,7 +166,7 @@ public class TelaModelo extends JDialog {
 
         controller.excluirModelo(id);
 
-        JOptionPane.showMessageDialog(this, "Modelo excluído!");
+        JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Modelo excluído!");
 
         atualizarTabela();
     }

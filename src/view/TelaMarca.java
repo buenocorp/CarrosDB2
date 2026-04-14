@@ -139,16 +139,16 @@ public class TelaMarca extends JDialog {
         String pais = txtPais.getText();
 
         if (nome.isEmpty() || pais.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Preencha todos os campos!");
             return;
         }
 
         if (idSelecionado == 0) {
             controller.salvarMarca(nome, pais);
-            JOptionPane.showMessageDialog(this, "Marca salva!");
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Marca salva!");
         } else {
             controller.atualizarMarca(idSelecionado, nome, pais);
-            JOptionPane.showMessageDialog(this, "Marca atualizada!");
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Marca atualizada!");
             idSelecionado = 0;
         }
 
@@ -161,7 +161,7 @@ public class TelaMarca extends JDialog {
         int linha = tabela.getSelectedRow();
 
         if (linha == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione uma marca!");
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Selecione uma marca!");
             return;
         }
 
@@ -178,7 +178,7 @@ public class TelaMarca extends JDialog {
         int linha = tabela.getSelectedRow();
 
         if (linha == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione uma marca!");
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Selecione uma marca!");
             return;
         }
 
@@ -186,7 +186,7 @@ public class TelaMarca extends JDialog {
 
         controller.excluirMarca(id);
 
-        JOptionPane.showMessageDialog(this, "Marca excluída!");
+        JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Marca excluída!");
 
         atualizarTabela();
     }
@@ -196,7 +196,7 @@ public class TelaMarca extends JDialog {
         int linha = tabela.getSelectedRow();
 
         if (linha == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione uma marca!");
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(contentPane), "Selecione uma marca!");
             return;
         }
 
@@ -228,5 +228,9 @@ public class TelaMarca extends JDialog {
 
     public Marca getMarcaSelecionada() {
         return marcaSelecionada;
+    }
+
+    public void atualizar() {
+        atualizarTabela();
     }
 }
