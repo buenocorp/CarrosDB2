@@ -28,6 +28,7 @@ public class TelaHome extends JFrame {
     private JButton botaoAtivo;
     private JButton btnInicio;
     private JButton btnMarcas;
+    private JButton btnMarcas2;
     private JButton btnModelos;
 
     public TelaHome(String nomeUsuario) {
@@ -104,17 +105,20 @@ public class TelaHome extends JFrame {
 
         btnInicio  = new JButton("  Início");
         btnMarcas  = new JButton("  Marcas");
-        btnModelos = new JButton("  Modelos");
+        btnMarcas2  = new JButton("  Marcas 2");
         aplicarEstiloBotaoMenu(btnInicio,  "INICIO");
         aplicarEstiloBotaoMenu(btnMarcas,  "MARCAS");
-        aplicarEstiloBotaoMenu(btnModelos, "MODELOS");
+        aplicarEstiloBotaoMenu(btnMarcas2,  "MARCAS 2");
 
         sidebar.add(btnInicio);
         sidebar.add(Box.createVerticalStrut(2));
         sidebar.add(btnMarcas);
         sidebar.add(Box.createVerticalStrut(2));
-        sidebar.add(btnModelos);
+        sidebar.add(btnMarcas2);
         sidebar.add(Box.createVerticalStrut(2));
+        btnModelos = new JButton("  Modelos");
+        aplicarEstiloBotaoMenu(btnModelos, "MODELOS");
+        sidebar.add(btnModelos);
 
         sidebar.add(Box.createVerticalGlue());
 
@@ -168,6 +172,7 @@ public class TelaHome extends JFrame {
 
         painelConteudo.add(criarPainelDashboard(), "INICIO");
         painelConteudo.add(criarPainelMarca(),     "MARCAS");
+        painelConteudo.add(criarPainelMarca2(),     "MARCAS 2");
         painelConteudo.add(criarPainelModelo(),    "MODELOS");
 
         cardLayout.show(painelConteudo, "INICIO");
@@ -208,11 +213,19 @@ public class TelaHome extends JFrame {
     }
 
     // =========================================================
-    // Painel: CRUD de Marcas
+    // Painel: Listagem de Marcas
+    // =========================================================
+    private JPanel criarPainelMarca2() {
+        TelaMarcasListagem tela = new TelaMarcasListagem(this);
+        return (JPanel) tela.getContentPane();
+    }
+    
+ // =========================================================
+    // Painel: Listagem de Marcas
     // =========================================================
     private JPanel criarPainelMarca() {
-        TelaMarca telaMarca = new TelaMarca(this);
-        return (JPanel) telaMarca.getContentPane();
+        TelaMarca tela = new TelaMarca(this);
+        return (JPanel) tela.getContentPane();
     }
 
     // =========================================================
