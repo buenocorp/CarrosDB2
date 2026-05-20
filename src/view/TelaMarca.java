@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.MarcaController;
+import dao.MarcaDAO;
 import model.Marca;
 
 public class TelaMarca extends JDialog {
@@ -17,7 +18,7 @@ public class TelaMarca extends JDialog {
     private JTable tabela;
     private DefaultTableModel modeloTabela;
 
-    private MarcaController controller = new MarcaController();
+    private MarcaController controller;
 
     private int idSelecionado = 0;
     private Marca marcaSelecionada;
@@ -31,6 +32,13 @@ public class TelaMarca extends JDialog {
     public TelaMarca(java.awt.Window parent, boolean modoSelecao) {
         super(parent, ModalityType.APPLICATION_MODAL);
 
+        try {
+			controller = new MarcaController(new MarcaDAO());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
         this.modoSelecao = modoSelecao;
 
         configurarJanela();
@@ -39,6 +47,16 @@ public class TelaMarca extends JDialog {
         atualizarTabela();
     }
     
+    public TelaMarca(java.awt.Window parent, MarcaController controller) {
+        super(parent, ModalityType.APPLICATION_MODAL);
+        this.controller = controller;
+        this.modoSelecao = false;
+        configurarJanela();
+        criarComponentes();
+        configurarModo();
+        atualizarTabela();
+    }
+
     public static Marca selecionarMarca(java.awt.Window parent) {
         TelaMarca tela = new TelaMarca(parent, true);
         tela.setVisible(true);

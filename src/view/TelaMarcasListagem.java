@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.*;
 import controller.MarcaController;
+import dao.MarcaDAO;
 import model.Marca;
 
 public class TelaMarcasListagem extends JFrame {
@@ -23,10 +24,11 @@ public class TelaMarcasListagem extends JFrame {
     private JPanel contentPane;
     private JTable tabela;
     private DefaultTableModel modeloTabela;
-    private final MarcaController controller = new MarcaController();
+    private MarcaController controller;
 
     public TelaMarcasListagem(java.awt.Window parent) {
-        configurarJanela();
+
+		configurarJanela();
         criarComponentes();
         atualizarTabela();
     }
@@ -37,6 +39,15 @@ public class TelaMarcasListagem extends JFrame {
         contentPane.setBackground(COR_CONTEUDO);
         contentPane.setBorder(new EmptyBorder(24, 24, 24, 24));
         setContentPane(contentPane);
+        
+		try {
+			MarcaDAO marcaDAO = new MarcaDAO();
+	         controller =
+	                 new MarcaController(marcaDAO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     private void criarComponentes() {
